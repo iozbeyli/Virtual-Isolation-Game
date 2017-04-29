@@ -20,12 +20,14 @@ public class EnterSceneUIController{
 		}
 	}
 
-	public static UserUIController UserUIController{
+	public static HubControlUIController HubControlUIController{
 		get{ 
 			checkUIControllers ();
-			return UIControllers.GetComponent<UserUIController> ();
+			return UIControllers.GetComponent<HubControlUIController> ();
 		}
 	}
+
+
 
 	private static void checkUIControllers(){
 		if (UIControllers == null) {

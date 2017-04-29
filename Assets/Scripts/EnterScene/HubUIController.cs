@@ -59,7 +59,7 @@ public class HubUIController : MonoBehaviour,ScrollLister<Hub> {
 
 	public void checkScrollListCreator(){
 		if (scrollListCreator == null) {
-			scrollListCreator = new ScrollListCreator<Hub> (hubListPanel,dummyHubObject,hubPrefab,"Hub");
+			scrollListCreator = new ScrollListCreator<Hub> (hubListScrollPanel,dummyHubObject,hubPrefab,"Hub");
 		}
 	}
 

@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class MainUser{
 
-	private string id="";
 	public string ID{
 		get{
-			return id;
+			return user.ID;
 		}
 		set{ 
-			id = value;
+			user.ID = value;
 		}
 	}
 
-	private string username="";
 	public string Username{
 		get{ 
-			return username;
+			return user.Username;
 		}
 		set{ 
-			username = value;
+			user.Username = value;
 		}
 	}
+
+	public User user;
+
 
 	private static MainUser instance=null;
 	public static MainUser getInstance (){
@@ -32,6 +33,7 @@ public class MainUser{
 		return instance;
 	}
 	public MainUser(){
+		user = new User ();
 	}
 
 

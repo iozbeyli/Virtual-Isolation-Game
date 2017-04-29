@@ -4,6 +4,7 @@ using UnityEngine;
 using SocketIO;
 public class HubController{
 	private Hub currentHub=null;
+	private List<User> hubCrew = new List<User>();
 
 	private static HubController instance=null;
 	public static HubController getInstance(){
@@ -12,7 +13,8 @@ public class HubController{
 		}
 		return instance;
 	}
-	private HubController(){}
+	private HubController(){
+	}
 
 	public void goIntoHub(){
 		
@@ -37,14 +39,30 @@ public class HubController{
 					//successfulJoin();
 				}else{
 					Debug.Log("A wild user appeared");
+					addCrewMember(user);
+
 				}
 			}
 
 		});
 	}
 
+	public void listenLeave(){
+		
+	}
+
 	public void successfulJoin(){
 		EnterSceneUIController.HubUIController.openCloseHubControlPanel ();
+		hubCrew.Add (MainUser.getInstance ().user);
+		EnterSceneUIController.HubControlUIController.listCrew (hubCrew);
+		HubChatController.listenChat ();
+		listenLeave ();
+	
+	}
+
+	public void addCrewMember(User user){
+		hubCrew.Add (user);
+		EnterSceneUIController.HubControlUIController.listCrew (hubCrew);
 	}
 
 }

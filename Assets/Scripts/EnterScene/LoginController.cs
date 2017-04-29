@@ -31,6 +31,7 @@ public class LoginController : HTTPCommunicator{
 		MainUser.getInstance ().ID = idObject.str;
 		Debug.Log (MainUser.getInstance ().ID);
 		MainUser.getInstance ().Username = data.GetField ("username").str;
+		Debug.Log (MainUser.getInstance ().Username);
 	}
 
 }
