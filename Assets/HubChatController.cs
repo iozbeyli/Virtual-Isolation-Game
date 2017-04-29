@@ -4,6 +4,8 @@ using UnityEngine;
 using SocketIO;
 public class HubChatController{
 
+	private static List<ChatMessage> messages=new List<ChatMessage>();
+
 	public static void sendMessageToChat(){
 		string message = EnterSceneUIController.HubControlUIController.chatMessageInputField.text;
 		Dictionary<string,string> data = new Dictionary<string,string> ();
@@ -15,6 +17,10 @@ public class HubChatController{
 	public static void listenChat(){
 		SocketCommunicationController.listenEvent (Constants.HUB_CHAT_CHANNEL+"d", (SocketIOEvent e) => {
 			Debug.Log(e.data.ToString());
+			ChatMessage chatMessage = JSONParser.parseChatMessage(e.data);
+			messages.Add(chatMessage);
+			Debug.Log(chatMessage.Content);
+			EnterSceneUIController.HubControlUIController.listChatMessages(messages);
 		});
 	}
 

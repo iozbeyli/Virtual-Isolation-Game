@@ -25,12 +25,12 @@ public class ScrollListCreator <T>{
 
 	public void listObjects(List<T> scrollList,ScrollLister<T> lister){
 		foreach (T t in scrollList) {
-			GameObject itemObject = addItem ();
-			lister.setScrollItem (t,itemObject);
+			GameObject itemObject = addItemPart1 ();
+			GameObject updatedObject = lister.setScrollItem (t,itemObject);
 		}
 	}
 
-	public GameObject addItem(){
+	public GameObject addItemPart1(){
 		count++;
 		checkInstantiator ();
 		Vector2 dummyPosition = scrollDummyObject.transform.localPosition;
@@ -39,12 +39,18 @@ public class ScrollListCreator <T>{
 		GameObject newObject = GameObject.Find (objectName + "(Clone)");
 		newObject.name = objectName + "-" + count;
 		newObject.transform.localPosition = dummyPosition;
-		float dummyHeight=rect.height;
-		scrollDummyObject.transform.localPosition-=new Vector3(0,dummyHeight+5,0);
+		return newObject;
+	}
+
+	public GameObject continueListing(GameObject updatedObject){
+		Rect rect = updatedObject.GetComponent<RectTransform>().rect;
+		Debug.Log ("new height" + rect.height);
+		updatedObject.transform.localPosition = scrollDummyObject.transform.localPosition;
+		scrollDummyObject.transform.localPosition -= new Vector3 (0, rect.height + 5, 0);
 		RectTransform scrollRect = scrollPanel.GetComponent<RectTransform> ();
 		//scrollRect.sizeDelta = new Vector2 (scrollRect.sizeDelta.x, scrollRect.sizeDelta.y+dummyHeight);
-		items.Add (newObject);
-		return newObject;
+		items.Add (updatedObject);
+		return updatedObject;
 	}
 
 	public void checkInstantiator(){

@@ -54,6 +54,7 @@ public class HubUIController : MonoBehaviour,ScrollLister<Hub> {
 			HubListController.getInstance().joinHub (item);
 		};
 		button.onClick.AddListener(action);
+		scrollListCreator.continueListing (itemObject);
 		return itemObject;
 	}
 

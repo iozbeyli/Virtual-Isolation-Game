@@ -30,4 +30,16 @@ public class JSONParser{
 
 	}
 
+	public static ChatMessage parseChatMessage(JSONObject data){
+		ChatMessage chatMessage = new ChatMessage ();
+		JSONObject senderObject = data.GetField ("sender");
+		User user = parseUser (senderObject);
+		JSONObject payloadObject = data.GetField ("payload");
+		chatMessage.ID = payloadObject.GetField ("_id").str;
+		chatMessage.Content = payloadObject.GetField ("message").str;
+		chatMessage.Date = payloadObject.GetField ("sendedAt").str;
+		chatMessage.Sender = user;
+		return chatMessage;
+	}
+
 }
