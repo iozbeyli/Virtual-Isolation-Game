@@ -35,12 +35,12 @@ public class HubControlUIController : MonoBehaviour, ScrollLister<User> , Scroll
 		texts [0].text = item.title;
 		//Debug.Log ("item username id" + item.Username);
 		scenarioScrollListCreator.continueListing (itemObject);
-		texts [1].gameObject.GetComponent<Button> ();
-		Button[] button = itemObject.GetComponentsInChildren<Button> ();
+		Button button = itemObject.GetComponent<Button> ();
+		//Button[] button = itemObject.GetComponentsInChildren<Button> ();
 		UnityAction action = () => {
 			HubScenarioController.getInstance().chooseScenario(item);
 		};
-		button[0].onClick.AddListener (action);
+		button.onClick.AddListener (action);
 		return itemObject;
 	}
 
@@ -108,7 +108,10 @@ public class HubControlUIController : MonoBehaviour, ScrollLister<User> , Scroll
 	}
 
 	public void startGame(){
-		SceneManager.LoadScene (1);
+		Debug.Log ("start game");
+		HubRoomController.getInstance ().sendAddRoom ();
+
+		//SceneManager.LoadScene (1);
 	}
 
 	public void openCloseScenarioPanel(){

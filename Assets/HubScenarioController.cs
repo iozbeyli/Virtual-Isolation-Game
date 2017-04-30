@@ -38,6 +38,7 @@ public class HubScenarioController : HTTPCommunicator{
 
 	public void chooseScenario(Scenario scenario){
 		HubRoomController.getInstance ().setRoomCount (scenario.roomCount);
+		EnterSceneUIController.HubControlUIController.openCloseScenarioPanel ();
 	}
 
 }

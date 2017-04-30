@@ -57,6 +57,7 @@ public class HubController{
 		EnterSceneUIController.HubControlUIController.listCrew (hubCrew);
 		HubChatController.listenChat ();
 		HubScenarioController.getInstance ().getScenarios ();
+		HubEquipmentController.getInstance ().getEquipments ();
 		listenLeave ();
 	
 	}

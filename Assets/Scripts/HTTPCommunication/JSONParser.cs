@@ -71,4 +71,33 @@ public class JSONParser{
 		return task;
 	}
 
+	public static Equipment parseEquipmentMessage(JSONObject data){
+		Equipment equipment = new Equipment();
+		equipment.id = data.GetField ("_id").str;
+		equipment.label = data.GetField ("label").str;
+		equipment.description = data.GetField ("description").str;
+		equipment.detCoef = (int)data.GetField ("detCoef").n;
+		equipment.lastMaintenance = data.GetField ("lastMaintanence").str;
+		equipment.size = (int)data.GetField ("size").n;
+		List<JSONObject> taskArray = data.GetField ("relatedTasks").list;
+		List<Task> tasks = new List<Task> ();
+		foreach (JSONObject t in taskArray) {
+			Task task = parseTaskMessage (t);
+			tasks.Add (task);
+		}
+		equipment.tasks = tasks;
+		return equipment;
+	}
+
+	public static JSONObject parseRoomToJSON(Room room){
+		JSONObject json = new JSONObject ();
+		json.AddField ("sayi",room.roomNumber);
+		JSONObject arr = new JSONObject (JSONObject.Type.ARRAY);
+		json.AddField ("equipments", arr);
+		foreach (Equipment e in room.equipments) {
+			arr.Add (e.id);
+		}
+		return json;
+	}
+
 }
