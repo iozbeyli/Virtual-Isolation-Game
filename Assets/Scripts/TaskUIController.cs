@@ -9,7 +9,7 @@ public class TaskUIController : MonoBehaviour,ScrollLister<Task> {
 	public GameObject taskScrollPanel;
 	public ScrollListCreator<Task> taskScrollListCreator;
 
-	public void listCrew(List<Task> tasks){
+	public void listTask(List<Task> tasks){
 		checkTaskScrollListCreator ();
 		taskScrollListCreator.resetList ();
 		taskScrollListCreator.listObjects (tasks, this);
