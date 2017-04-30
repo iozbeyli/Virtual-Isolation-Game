@@ -22,5 +22,6 @@ public class Constants{
 	public static string HUB_JOIN_CHANNEL = "hub:join";
 	public static string HUB_CHAT_CHANNEL = "hub:message";
 	public static string HUB_RECEIVE_TASKS= "hub:newTask";
+	public static string ROOM_ENTER = "room:enter";
 
 }
