@@ -11,6 +11,7 @@ public class JSONParser{
 		bool started = data.GetField ("started").b;
 		List<string> rooms =  JSONOperations.JSONArrayToStringArray (data, "rooms");
 		List<string> members = JSONOperations.JSONArrayToStringArray (data, "members");
+		Debug.Log("memeber :"+data.GetField("members").ToString());
 		Hub hub = new Hub (label);
 		hub.ID = id;
 		hub.Date = date;
