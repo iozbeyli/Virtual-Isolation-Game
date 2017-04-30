@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Equipment {
+public class mebeguEquipment {
 	
 	private string id;
 	public string ID{
@@ -34,5 +34,5 @@ public class Equipment {
 	}
 
 
-	public Equipment(){}
+	public mebeguEquipment(){}
 }

@@ -15,12 +15,12 @@ public class RoomEqUIController : MonoBehaviour {
 	}
 
 	private void setEq(GameObject eqGroup, Equipment eq){
-		GameObject[] children = eqGroup.GetComponentsInChildren<Text> ();
-		foreach (GameObject c in children) {
-			if (c.name.Equals ("Title")) {
-				((Text)c).text = eq.Label;
-			} else if (c.name.Equals ("Description")) {
-				((Text)c).text = eq.Description;
+		Text[] children = eqGroup.GetComponentsInChildren<Text> ();
+		foreach (Text c in children) {
+			if (c.gameObject.name.Equals ("Title")) {
+				c.text = eq.label;
+			} else if (c.gameObject.name.Equals ("Description")) {
+				c.text = eq.description;
 			}
 		}
 	}

@@ -56,6 +56,7 @@ public class HubListController : HTTPCommunicator {
 		Dictionary<string,string> data = new Dictionary<string,string> ();
 		data ["token"] = Session.getInstance ().Token;
 		data ["hubId"] = item.ID;
+		Session.getInstance ().currentHub=item.ID;
 		comm.emitMessage (Constants.HUB_JOIN_CHANNEL,data);
 		HubController.getInstance().listenJoin ();
 	}

@@ -5,7 +5,7 @@ using SocketIO;
 
 public class GameRoomUIController {
 
-	List<Equipment> eqs = new List<User>();
+	List<Equipment> eqs = new List<Equipment>();
 
 	public void room1Click(){
 		enterRoom ("0");

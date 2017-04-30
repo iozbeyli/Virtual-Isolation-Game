@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using WebSocketSharp;
+using WebSocketSharp.Net;
 public class Session{
 
+	public WebSocket ws;
 	public string currentRoom;
 	public string currentHub;
 
