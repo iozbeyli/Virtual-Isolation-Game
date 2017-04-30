@@ -18,6 +18,10 @@ public class ChatInputFieldController: MonoBehaviour {
 
 	public void OnEndEdit(){
 		string message = chatInputField.text;
-		communicationScript.sendMessage (message);
+		if (!message.Equals ("")) {
+			communicationScript.sendMessage (message);
+		}
+
+
 	}
 }
