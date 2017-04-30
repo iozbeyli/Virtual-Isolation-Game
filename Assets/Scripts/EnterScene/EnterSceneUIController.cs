@@ -34,6 +34,13 @@ public class EnterSceneUIController{
 		}
 	}
 
+	public static HubEquipmentUIController HubEquipmentUIController{
+		get{ 
+			checkUIControllers ();
+			return UIControllers.GetComponent<HubEquipmentUIController> ();
+		}
+	}
+
 
 	private static void checkUIControllers(){
 		if (UIControllers == null) {

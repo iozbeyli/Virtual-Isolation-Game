@@ -21,6 +21,9 @@ public class SocketCommunicationController{
 	public static void emitMessage(string channel,Dictionary<string, string> data){
 		Socket.Emit (channel	, new JSONObject(data));
 	}
+	public static void emitMessageJSON(string channel,JSONObject json){
+		Socket.Emit (channel	, json);
+	}
 
 	public static void listenEvent(string channel,Action<SocketIOEvent> callback){
 		Socket.On (channel, callback);
