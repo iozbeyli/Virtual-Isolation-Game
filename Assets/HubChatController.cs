@@ -20,7 +20,7 @@ public class HubChatController{
 			ChatMessage chatMessage = JSONParser.parseChatMessage(e.data);
 			messages.Add(chatMessage);
 			Debug.Log(chatMessage.Content);
-			if(messages.Count>10){
+			if(messages.Count>6){
 				messages.RemoveAt(0);
 			}
 			EnterSceneUIController.HubControlUIController.listChatMessages(messages);

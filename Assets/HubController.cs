@@ -31,6 +31,12 @@ public class HubController{
 			if(currentHub == null){
 				if(user.ID.Equals(MainUser.getInstance().ID)){
 					currentHub = hub;
+					foreach(string s in hub.Members){
+						User newUser = new User();
+						newUser.ID=s;
+						newUser.Username=s;
+						hubCrew.Add(newUser);
+					}
 					successfulJoin();
 				}
 			}else{
