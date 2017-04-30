@@ -19,7 +19,8 @@ public class LoginController : HTTPCommunicator{
 																				HTTPCommunicationController.getInstance ().postJSONData (Constants.LOGIN_API_URL, data, this);	
 	}
 
-	public 	void successfulExecution	(JSONObject data)					{	Debug.Log (data.ToString ()); parseResponseData (data);
+	public 	void successfulExecution	(JSONObject data)					{	Debug.Log (data.ToString ()); 
+																				parseResponseData (data);
 																				EnterSceneUIController.AuthenticationUIController.loginToHub ();}
 
 	public 	void failedExecution		(string error)						{																							}

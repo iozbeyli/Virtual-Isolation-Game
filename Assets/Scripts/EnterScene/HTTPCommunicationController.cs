@@ -17,6 +17,7 @@ public class HTTPCommunicationController{
 	private HTTPCommunicationController (){}
 
 	public void successfulExecution(string response,HTTPCommunicator communicator){
+		Debug.Log (response);
 		JSONObject responseJSONObject = new JSONObject(response);
 		JSONObject data = responseJSONObject.GetField("data");
 		communicator.successfulExecution (data);

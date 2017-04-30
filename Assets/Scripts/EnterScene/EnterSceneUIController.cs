@@ -27,6 +27,12 @@ public class EnterSceneUIController{
 		}
 	}
 
+	public static HubRoomUIController HubRoomUIController{
+		get{ 
+			checkUIControllers ();
+			return UIControllers.GetComponent<HubRoomUIController> ();
+		}
+	}
 
 
 	private static void checkUIControllers(){

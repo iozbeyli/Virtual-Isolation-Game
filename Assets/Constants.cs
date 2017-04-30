@@ -16,6 +16,8 @@ public class Constants{
 	public static string HUB_API_URL = API_URL + "/hub";
 	public static string CREATE_HUB_API_URL = HUB_API_URL+"/create";
 	public static string GET_HUB_LIST_API_URL = HUB_API_URL;
+	public static string GET_MY_HUB_URL = API_URL + "/myhub";
+	public static string GET_HUB_SCENARIO = API_URL + "/scenario";
 
 	public static string HUB_JOIN_CHANNEL = "hub:join";
 	public static string HUB_CHAT_CHANNEL = "hub:message";

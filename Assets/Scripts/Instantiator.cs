@@ -5,7 +5,8 @@ using UnityEngine;
 public class Instantiator : MonoBehaviour {
 
 
-	public void instantiate(Transform prefab,Vector2 position,Quaternion rotation,Transform parent){
-		Instantiate (prefab, position, Quaternion.identity, parent);
+	public GameObject instantiate(Transform prefab,Vector2 position,Quaternion rotation,Transform parent){
+		Transform t=Instantiate<Transform> (prefab, position, Quaternion.identity, parent);
+		return t.gameObject;
 	}
 }

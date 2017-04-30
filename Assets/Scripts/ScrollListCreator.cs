@@ -35,8 +35,11 @@ public class ScrollListCreator <T>{
 		checkInstantiator ();
 		Vector2 dummyPosition = scrollDummyObject.transform.localPosition;
 		Rect rect = scrollDummyObject.GetComponent<RectTransform> ().rect;
-		instantiator.instantiate (prefab, dummyPosition, Quaternion.identity, scrollDummyObject.transform.parent);
-		GameObject newObject = GameObject.Find (objectName + "(Clone)");
+		GameObject newObject=instantiator.instantiate (prefab, dummyPosition, Quaternion.identity, scrollDummyObject.transform.parent);
+		//GameObject newObject = GameObject.Find (objectName + "(Clone)");
+		if (newObject == null) {
+			Debug.Log ("whaat");
+		}
 		newObject.name = objectName + "-" + count;
 		newObject.transform.localPosition = dummyPosition;
 		return newObject;

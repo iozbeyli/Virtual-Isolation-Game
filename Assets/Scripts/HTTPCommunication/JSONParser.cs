@@ -42,4 +42,33 @@ public class JSONParser{
 		return chatMessage;
 	}
 
+	public static Scenario parseScenarioMessage(JSONObject data){
+		Scenario scenario = new Scenario ();
+		scenario.id = data.GetField ("_id").str;
+		scenario.title = data.GetField ("title").str;
+		scenario.description = data.GetField ("description").str;
+		scenario.crewSize = (int)data.GetField ("crewSize").n;
+		scenario.duration = (int)data.GetField ("duration").n;
+		scenario.roomCount = (int)data.GetField ("roomCount").n;
+		List<JSONObject> taskArray = data.GetField ("tasks").list;
+		List<Task> tasks = new List<Task> ();
+		foreach (JSONObject t in taskArray) {
+			Task task = parseTaskMessage (t);
+			tasks.Add (task);
+		}
+		scenario.tasks = tasks;
+
+		return scenario;
+	}
+
+	public static Task parseTaskMessage(JSONObject data){
+		Task task = new Task ();
+		task.ID = data.GetField ("_id").str;
+		task.Title = data.GetField ("label").str;
+		task.Description = data.GetField ("description").str;
+		task.Duration = (int)data.GetField ("duration").n;
+		task.Deadline = (int)data.GetField ("deadline").n;
+		return task;
+	}
+
 }

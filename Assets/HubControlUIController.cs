@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-public class HubControlUIController : MonoBehaviour, ScrollLister<User> , ScrollLister<ChatMessage> {
+using UnityEngine.SceneManagement;
+
+
+public class HubControlUIController : MonoBehaviour, ScrollLister<User> , ScrollLister<ChatMessage>, ScrollLister<Scenario> {
 	public GameObject dummyCrewObject;
 	public Transform crewPrefab;
 	public GameObject crewScrollPanel;
@@ -14,6 +17,38 @@ public class HubControlUIController : MonoBehaviour, ScrollLister<User> , Scroll
 	public Transform chatMessagePrefab;
 	public GameObject chatMessageScrollPanel;
 	public ScrollListCreator<ChatMessage> chatMessageScrollListCreator;
+
+	public GameObject dummyScenarioObject;
+	public Transform scenarioPrefab;
+	public GameObject scenarioScrollPanel;
+	public ScrollListCreator<Scenario> scenarioScrollListCreator;
+	public GameObject hubScenarioPanel;
+
+	public void listScenario(List<Scenario> scenarios){
+		checkScenarioScrollListCreator ();
+		scenarioScrollListCreator.resetList ();
+		scenarioScrollListCreator.listObjects (scenarios, this);
+	}
+
+	public GameObject setScrollItem(Scenario item, GameObject itemObject){
+		Text[] texts = itemObject.GetComponentsInChildren<Text> ();
+		texts [0].text = item.title;
+		//Debug.Log ("item username id" + item.Username);
+		scenarioScrollListCreator.continueListing (itemObject);
+		texts [1].gameObject.GetComponent<Button> ();
+		Button[] button = itemObject.GetComponentsInChildren<Button> ();
+		UnityAction action = () => {
+			HubScenarioController.getInstance().chooseScenario(item);
+		};
+		button[0].onClick.AddListener (action);
+		return itemObject;
+	}
+
+	public void checkScenarioScrollListCreator(){
+		if (scenarioScrollListCreator == null) {
+			scenarioScrollListCreator = new ScrollListCreator<Scenario> (scenarioScrollPanel,dummyScenarioObject,scenarioPrefab,"Scenario");
+		}
+	}
 
 	public void listCrew(List<User> users){
 		checkCrewScrollListCreator ();
@@ -28,9 +63,7 @@ public class HubControlUIController : MonoBehaviour, ScrollLister<User> , Scroll
 		crewScrollListCreator.continueListing (itemObject);
 		return itemObject;
 	}
-
-
-
+		
 	public void checkCrewScrollListCreator(){
 		if (crewScrollListCreator == null) {
 			crewScrollListCreator = new ScrollListCreator<User> (crewScrollPanel,dummyCrewObject,crewPrefab,"Crew");
@@ -63,9 +96,7 @@ public class HubControlUIController : MonoBehaviour, ScrollLister<User> , Scroll
 		yield return new WaitForEndOfFrame();
 		chatMessageScrollListCreator.continueListing (itemObject);
 	}
-
-
-
+		
 	public void checkChatMessageScrollListCreator(){
 		if (chatMessageScrollListCreator == null) {
 			chatMessageScrollListCreator = new ScrollListCreator<ChatMessage> (chatMessageScrollPanel,dummyChatMessageObject,chatMessagePrefab,"ChatMessage");
@@ -74,5 +105,13 @@ public class HubControlUIController : MonoBehaviour, ScrollLister<User> , Scroll
 
 	public void sendMessage(){
 		HubChatController.sendMessageToChat ();
+	}
+
+	public void startGame(){
+		SceneManager.LoadScene (1);
+	}
+
+	public void openCloseScenarioPanel(){
+		hubScenarioPanel.SetActive (!hubScenarioPanel.activeInHierarchy);
 	}
 }

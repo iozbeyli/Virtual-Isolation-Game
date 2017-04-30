@@ -56,6 +56,7 @@ public class HubController{
 		hubCrew.Add (MainUser.getInstance ().user);
 		EnterSceneUIController.HubControlUIController.listCrew (hubCrew);
 		HubChatController.listenChat ();
+		HubScenarioController.getInstance ().getScenarios ();
 		listenLeave ();
 	
 	}
