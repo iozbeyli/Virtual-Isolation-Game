@@ -31,6 +31,7 @@ public class HubController{
 			if(currentHub == null){
 				if(user.ID.Equals(MainUser.getInstance().ID)){
 					currentHub = hub;
+
 					successfulJoin();
 				}
 			}else{

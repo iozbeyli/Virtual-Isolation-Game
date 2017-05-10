@@ -90,7 +90,7 @@ namespace SocketIO
 		#region Unity interface
 
 		public void Awake()
-		{
+		{	
 			encoder = new Encoder();
 			decoder = new Decoder();
 			parser = new Parser();
@@ -98,13 +98,18 @@ namespace SocketIO
 			ackList = new List<Ack>();
 			sid = null;
 			packetId = 0;
+			if (Session.getInstance ().ws != null) {
+				ws.Close ();
+			}
+				ws = new WebSocket(url);
+			Session.getInstance ().ws = ws;
+				ws.OnOpen += OnOpen;
+				ws.OnMessage += OnMessage;
+				ws.OnError += OnError;
+				ws.OnClose += OnClose;
+				wsConnected = false;
+			
 
-			ws = new WebSocket(url);
-			ws.OnOpen += OnOpen;
-			ws.OnMessage += OnMessage;
-			ws.OnError += OnError;
-			ws.OnClose += OnClose;
-			wsConnected = false;
 
 			eventQueueLock = new object();
 			eventQueue = new Queue<SocketIOEvent>();

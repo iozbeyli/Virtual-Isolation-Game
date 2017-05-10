@@ -111,7 +111,8 @@ public class HubControlUIController : MonoBehaviour, ScrollLister<User> , Scroll
 		Debug.Log ("start game");
 		HubRoomController.getInstance ().sendAddRoom ();
 
-		//SceneManager.LoadScene (1);
+		SceneManager.LoadScene (1);
+
 	}
 
 	public void openCloseScenarioPanel(){
